@@ -95,7 +95,12 @@ This section begins with our examination of the MOSFET models included in the sk
 The components used are:\
 `nfet_01v8.sym` - from xschem_sky130 library\
 `vsource.sym` - from xschem devices library\
-`code_shown.sym` - from xschem devices library
+`code_shown.sym` - from xschem devices library\
+`gnd` - from xschem devices library\
+`lab_pin` - from xschem devices library\
+`code_shown` - from xschem devices library
+
+> .LIB -> include a library
 
 I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ***Ids vs Vds*** and ***Ids vs Vgs***. To do that, just save the above circuit with the above mentioned specifications and component placement. After this just hit Netlist then Simulate. ngspice would pop up and start doing the simulation based calculations. It will take time as all the libraries need to be called and attached to the simulation spice engine. Once that is done, you need to write a couple commands in the ngspice terminal:
 
@@ -104,3 +109,19 @@ I used the above to plot the basic characteristic plots for an NMOS Transistor, 
 after this choose a plot by typing *'''setplot <plot_name>'''. for example '''setplot tran1'''*\
 `plot` - to choose the vector to plot.
 example : plot -vds#branch
+
+using `plot -vds#branch`
+- Ids vs Vds
+> Code_shown window
+".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.dc Vgs 0 1.8 .1m Vds 0 2 .3\
+.save all \
+.end"
+
+
+- Ids vs Vgs
+> Code_shown window
+".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.dc Vgs 0 1.8 .1m Vds 0 2 .3\
+.save all \
+.end"
