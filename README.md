@@ -64,15 +64,10 @@ $  ./configure
 $  sudo make
 $  sudo make install
 ```
-
-Steps to install Xschem Follow the instructions given here.
-
-1.2 PDK setup
+#### 1.2 PDK setup
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
 
 The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
-![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b7c776dc-db63-4ce8-9fef-b67b257d8b0f)
-
 
 
 #### Steps to download PDK 
