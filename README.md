@@ -131,6 +131,6 @@ using `plot -vds#branch`
 > ![NMOS_IDS VS VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/30c35b35-39dc-4b2f-8dd5-16cc3cb1251e)
 
 
-#### PMOS SCHEMARTIC
+#### 2.2.1 PMOS SCHEMARTIC
 ![PMOS CHARACTERISTICS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/3712f495-db17-4d29-860a-f1af38d47d57)
-Repeat the same steps similar to that of NMOS Characteristics
+*Repeat the same steps similar to that of NMOS Characteristics*
