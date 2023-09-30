@@ -145,8 +145,6 @@ using `plot -vds#branch`
 .dc Vgs 0 1.8 .1m Vds 0 2 .3\
 .save all \
 .end"
-> ![PMOS_IDS_VDS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/47e3f57f-5055-49c6-96af-1102fd6916a3)
-
 
 
 
@@ -156,5 +154,4 @@ using `plot -vds#branch`
 .dc Vds 0 1.8 .1m Vgs 0 2 .3\
 .save all \
 .end"
-> ![PMOS_IDS_VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/4aa8cb6d-12a6-4987-a285-20b8006459c4)
 --- 
