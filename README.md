@@ -67,7 +67,9 @@ step 5: to run magic with sky13nm pdk type "magic -T sky130A" press enter from a
 step 6: run ngspice,yosys,netgen with simply typeing there name and enter
 step 7: detail tutorial are available in tool's official site.
 
-***For a step-by-step procedure explanation for the installations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)***
+***For a step-by-step procedure explanation for the installations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)***\
+
+---
 
 ## 2. Analysis of MOSFET Characteristics
 
@@ -134,3 +136,25 @@ using `plot -vds#branch`
 #### 2.2.1 PMOS SCHEMARTIC
 ![PMOS CHARACTERISTICS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/3712f495-db17-4d29-860a-f1af38d47d57)
 *Repeat the same steps similar to that of NMOS Characteristics*
+
+#### 2.2.2 PMOS Characteristics
+using `plot -vds#branch`
+- Ids vs Vds
+> Code_shown window\
+".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.dc Vgs 0 1.8 .1m Vds 0 2 .3\
+.save all \
+.end"
+> ![PMOS_IDS_VDS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/47e3f57f-5055-49c6-96af-1102fd6916a3)
+
+
+
+
+- Ids vs Vgs
+> Code_shown window\
+".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.dc Vds 0 1.8 .1m Vgs 0 2 .3\
+.save all \
+.end"
+> ![PMOS_IDS_VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/4aa8cb6d-12a6-4987-a285-20b8006459c4)
+--- 
