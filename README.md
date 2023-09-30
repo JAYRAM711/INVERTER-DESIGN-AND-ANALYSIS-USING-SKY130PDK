@@ -49,6 +49,8 @@ Ngspice Reference Manual: [Complete reference manual](https://ngspice.sourceforg
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
 
 The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
+![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/2022c249-f797-4a6b-a4ab-738fb96001a6)
+
 
 ## Installing all the mentioned tools: 
 ### [edaBundle_whyRD](https://github.com/rajdeep66/edaBundle_whyRD)
