@@ -52,7 +52,7 @@ The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
 ![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/2022c249-f797-4a6b-a4ab-738fb96001a6)
 
 
-## Installing all the mentioned tools: 
+## 1.3 Installing all the mentioned tools: 
 ### [edaBundle_whyRD](https://github.com/rajdeep66/edaBundle_whyRD)
 
 opensource EDA tool for VLSI design : this script is in its initial phase and usefull if you just starting your journey to open source EDA tool , all ./configure command use default configuration and instrtucted to configure as per your requirement afer you get expertise to any specific tool till then please follow these steps to install yosys,xschem,ngspice,magic,netgen,openPDK and sky130nmpdk Note: we are assuming you have the linux environment up
