@@ -8,11 +8,11 @@ This project has only one goal: to experiment with the operation of an inverter 
 1.1 Tools setup
 For the design and simulation of our Inverter.
 
-Schematic Capture - Xschem
+Schematic Capture - [Xschem](http://repo.hu/projects/xschem/)
 Terminal Emulator - Xterm
-Spice netlist simulation - Ngspice
-Layout Design and DRC - Magic
-LVS - Netgen
+Spice netlist simulation - [Ngspice](https://ngspice.sourceforge.io/)
+Layout Design and DRC - [Magic](http://opencircuitdesign.com/magic/)
+LVS - [Netgen](http://opencircuitdesign.com/netgen/)
 
 
 1.1.1 Xschem
@@ -21,7 +21,8 @@ LVS - Netgen
 
 [Xschem](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) is a schematic capture program that allows to interactively enter an electronic circuit using a graphical and easy to use interface. When the schematic has been created a circuit netlist can be generated for simulation.
 
-Steps to install Xschem Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/install_xschem.html).
+####Steps to install Xschem 
+Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/install_xschem.html).
 
 1.1.2 Ngspice
 
