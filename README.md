@@ -21,8 +21,6 @@ LVS - [Netgen](http://opencircuitdesign.com/netgen/)
 
 [Xschem](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) is a schematic capture program that allows to interactively enter an electronic circuit using a graphical and easy to use interface. When the schematic has been created a circuit netlist can be generated for simulation.
 
-#### Steps to install Xschem 
-Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/install_xschem.html).
 
 #### 1.1.2 Ngspice
 
@@ -33,12 +31,6 @@ Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/i
 
 Ngspice Reference Manual: [Complete reference manual](https://ngspice.sourceforge.io/docs/ngspice-manual.pdf).
 
-#### Steps to install Ngspice -
-Don't use the version that comes with linux distribution, since it is dated and sometimes misses crucial updates
-
-Follow [this](https://www.youtube.com/watch?v=jXmmxO8WG8s&t=1032s) video for just the ngspice installation. DO NOT use this video to install xschem and skywater-pdk.
-
-The above video should be fine but if it does not work for you, Follow the instructions given inside the INSTALL and README file that comes inside the git clone of the repository of ngspice
 
 #### 1.1.3 Magic
 
@@ -46,8 +38,6 @@ The above video should be fine but if it does not work for you, Follow the instr
 
 [Magic](http://opencircuitdesign.com/magic/) is a VLSI layout tool.
 
-#### Steps to install Magic 
-Follow the instructions on the [Opencircuitdesign](http://opencircuitdesign.com/) Install section. I would suggest to use a couple options for the configuration file.
 
 #### 1.1.4 Netgen
 
@@ -55,29 +45,24 @@ Follow the instructions on the [Opencircuitdesign](http://opencircuitdesign.com/
 
 Netgen is a tool for comparing netlists, a process known as LVS, which stands for "Layout vs. Schematic". This is an important step in the integrated circuit design flow, ensuring that the geometry that has been laid out matches the expected circuit.
 
-#### Steps to install Netgen
-Open the terminal and type the following to insatll Netgen.
-
-```$  git clone git://opencircuitdesign.com/netgen
-$  cd netgen
-$  ./configure
-$  sudo make
-$  sudo make install
-```
 #### 1.2 PDK setup
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
 
 The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
 
+## Installing all the mentioned tools: 
+### [edaBundle_whyRD](https://github.com/rajdeep66/edaBundle_whyRD)
 
-#### Steps to download PDK 
-Open the terminal and type the following to download sky130 PDK.
+opensource EDA tool for VLSI design : this script is in its initial phase and usefull if you just starting your journey to open source EDA tool , all ./configure command use default configuration and instrtucted to configure as per your requirement afer you get expertise to any specific tool till then please follow these steps to install yosys,xschem,ngspice,magic,netgen,openPDK and sky130nmpdk Note: we are assuming you have the linux environment up
 
-```
-$  git clone https://github.com/RTimothyEdwards/open_pdks.git
-$  cd open_pdks
-$  ./configure [options]
-$  make
-$  [sudo] make install
-You should follow the instructions given at this link
-```
+
+Step 1:copy whyrd_eda_bundle.sh and install_openPDK.sh in your area Step 2: run source whyrd_eda_bundle.sh -->for most case it will run for few hour will ask you occasionally password and finist the process.
+But recomended to run it step wise(steps are mensioned in the code itself , and download only the tool you need.
+Step3:copy each line at a time of install_openPDK.sh and ensure no error is there. If its erroring out try to debug the reason using google search.
+
+Step 4: To run Xschem with sky130nm PDK do following thing cd to /usr/local/share/pdk/sky130A/libs.tech/xschem folder and type xschem press enter done , or alternatively copy xschemrc file from /usr/local/share/pdk/sky130A/libs.tech/xschem to any of your desire folder and run xschem.
+step 5: to run magic with sky13nm pdk type "magic -T sky130A" press enter from any location
+step 6: run ngspice,yosys,netgen with simply typeing there name and enter
+step 7: detail tutorial are available in tool's official site.
+
+For a step-by-step procedure explanation for the instalations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)
