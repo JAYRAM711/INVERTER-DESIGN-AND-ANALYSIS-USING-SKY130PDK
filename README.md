@@ -89,7 +89,7 @@ Some types of SPICE simulations provided in Ngspice :
 ### 2.1 General MOS Analysis
 This section begins with our examination of the MOSFET models included in the sky130 pdk. I used the 1.8v transistor models, but you can certainly use and explore with the others. The schematic I made in Xschem is shown below.
 
-#### NMOS SCHEMARTIC
+#### 2.1.1 NMOS SCHEMARTIC
 ![1 NMOS CHARACTERISTICS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/597b9758-3f74-41e6-8924-af729531de60)
 
 The components used are:\
@@ -110,18 +110,27 @@ after this choose a plot by typing *'''setplot <plot_name>'''. for example '''se
 `plot` - to choose the vector to plot.
 example : plot -vds#branch
 
+#### 2.1.2 NMOS Characteristics
 using `plot -vds#branch`
 - Ids vs Vds
-> Code_shown window
+> Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .dc Vgs 0 1.8 .1m Vds 0 2 .3\
 .save all \
 .end"
+> ![NMOS_IDS VS VDS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ebc2eff8-d4c0-493d-800d-55d7b361fb92)
+
 
 
 - Ids vs Vgs
-> Code_shown window
+> Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
-.dc Vgs 0 1.8 .1m Vds 0 2 .3\
+.dc Vds 0 1.8 .1m Vgs 0 2 .3\
 .save all \
 .end"
+> ![NMOS_IDS VS VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/30c35b35-39dc-4b2f-8dd5-16cc3cb1251e)
+
+
+#### PMOS SCHEMARTIC
+![PMOS CHARACTERISTICS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/3712f495-db17-4d29-860a-f1af38d47d57)
+Repeat the same steps similar to that of NMOS Characteristics
