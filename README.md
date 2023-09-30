@@ -67,7 +67,7 @@ step 5: to run magic with sky13nm pdk type "magic -T sky130A" press enter from a
 step 6: run ngspice,yosys,netgen with simply typeing there name and enter
 step 7: detail tutorial are available in tool's official site.
 
-***For a step-by-step procedure explanation for the instalations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)***
+***For a step-by-step procedure explanation for the installations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)***
 
 ## 2. Analysis of MOSFET Characteristics
 
