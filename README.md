@@ -43,16 +43,14 @@ Ngspice Reference Manual: [Complete reference manual](https://ngspice.sourceforg
 
 ![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/e4bb4c9c-3ab1-46f6-a10f-e3df6bbfb26c)
 
-[Netgen](http://opencircuitdesign.com/netgen/) is a tool for comparing netlists, a process known as LVS, which stands for "Layout vs. Schematic". This is an important step in the integrated circuit design flow, ensuring that the geometry that has been laid out matches the expected circuit.
+Netgen is a tool for comparing netlists, a process known as LVS, which stands for "Layout vs. Schematic". This is an important step in the integrated circuit design flow, ensuring that the geometry that has been laid out matches the expected circuit.
 
 #### 1.2 PDK setup
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
 
 The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
-![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/49d4e727-456b-4a8d-af38-577ca4df4c46)
 
-
-## 1.3 Installing all the mentioned tools: 
+## Installing all the mentioned tools: 
 ### [edaBundle_whyRD](https://github.com/rajdeep66/edaBundle_whyRD)
 
 opensource EDA tool for VLSI design : this script is in its initial phase and usefull if you just starting your journey to open source EDA tool , all ./configure command use default configuration and instrtucted to configure as per your requirement afer you get expertise to any specific tool till then please follow these steps to install yosys,xschem,ngspice,magic,netgen,openPDK and sky130nmpdk Note: we are assuming you have the linux environment up
@@ -67,4 +65,39 @@ step 5: to run magic with sky13nm pdk type "magic -T sky130A" press enter from a
 step 6: run ngspice,yosys,netgen with simply typeing there name and enter
 step 7: detail tutorial are available in tool's official site.
 
-For a step-by-step procedure explanation for the instalations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)
+For a step-by-step procedure explanation for the instalations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1) 
+
+## 2. Analysis of MOSFET Characteristics
+
+- step-1: Making a new directory and invoking Xschemrc file to connect to the sky130 pdk.
+
+```
+mkdir INV_TUTORIAL
+cp /usr/local/share/pdk/sky130B/libs.tech/xschem/xschemrc .
+```
+- step-2: we will be working on Xschem which will be invocked using Xterm terminal.
+
+Some types of SPICE simulations provided in Ngspice : 
+>AC Analysis -> Mainly used for Analog circuits and it is Frequency dependent
+> 
+>DC Analysis -> Mainly used for Digital circuits and it is Time independent
+>
+>Transient Analysis -> Mainly used for Digital circuits and it is Time dependent(DC Analysis + Time dependancy)
+
+### 2.1 General MOS Analysis
+This section begins with our examination of the MOSFET models included in the sky130 pdk. I used the 1.8v transistor models, but you can certainly use and explore with the others. The schematic I made in Xschem is shown below.
+
+#### NMOS Schematic
+
+The components used are:\
+`nfet_01v8.sym` - from xschem_sky130 library\
+`vsource.sym` - from xschem devices library\
+`code_shown.sym` - from xschem devices library
+
+I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ***Ids vs Vds*** and ***Ids vs Vgs***. To do that, just save the above circuit with the above mentioned specifications and component placement. After this just hit Netlist then Simulate. ngspice would pop up and start doing the simulation based calculations. It will take time as all the libraries need to be called and attached to the simulation spice engine. Once that is done, you need to write a couple commands in the ngspice terminal:
+
+`display` - This would display all the vectors available for plotting and printing.\
+`setplot` - This would list all the set of plots available for this simulation.\
+after this choose a plot by typing *'''setplot <plot_name>'''. for example '''setplot tran1'''*\
+`plot` - to choose the vector to plot.
+example : plot -vds#branch
