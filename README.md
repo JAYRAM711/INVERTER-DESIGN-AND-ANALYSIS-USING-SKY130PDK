@@ -448,3 +448,46 @@ from the above design `Rise time= 6.33198^-10`\
 **So, we can conclude that by reducing the Load capacitance the delay will be reducing bu a great extent.**
 
 ---
+## 3.5 Power simulation
+
+![Power formula](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/59d09714-aefe-43a3-a951-0068c2fd2e3f)
+
+As we have already known that Power= current * voltage\ 
+
+Any digital circuit will be having 3 power components namely dynamic,static and short circuit. all these  coponents are analyzed by using integration as shown in the above formula.  
+The current is from Vdd as the current generated from the Vin is almost to zero so it will be neglected.\
+The current from vdd can be plotted using `plot vdd#branch`
+
+![current vs output voltage](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/57a8bba1-8167-4bb6-8467-aeb035a8a47b)
+
+The calculation to identify the power by using the above formula is given in below figure\
+
+#### 3.5.1 power reducing techniques
+- Reducing Load capacitance values
+- Reducing Size of circuit elements
+- Reducing input power supply
+- Reducing no.of switching cycles
+
+### Technique-1 Reducing Load capacitance values
+The power can be reduced by reducing the Load capacitor values\
+Here the power has been calculated when CL=.5pf
+`power= 8.148w`
+![power calculated when c= 5pf](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/32379947-c156-4d3c-8f6b-26b721b43e0b)
+
+Here the power has been calculated when CL=.1pf
+`power= 1.666w`
+![power calculated when c= 1pf](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/f5361e61-22ff-4a99-ab7d-3a23ecc5bcc2)
+
+### Technique-2 Reducing Size of circuit elements
+
+and another factor that the power depends is the size of the circuit elements
+by increasing the size i.e. Aspect Ratio of PMOS from (2/0.15) to (4/0.15) and the Aspect ratio(W/L) of NMOS from (1/0.15) to (2/0.15).
+
+![power calculated when increase in nmos and pmos](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/047d4c6a-99d7-44b8-b92b-339e9657c5f1)
+From the above circuits we can observe that by increasing the size of circuit elements increases the consumption of power more.\
+
+### Technique-3 Reducing input power supply
+
+By reducing the input power supply to 1V we can identify the decrease in the power consumption.
+
+![power calculated when reduction in vdd power supply vdd=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/c6a617db-edcf-4c9a-9a0b-75192d949aa4)
