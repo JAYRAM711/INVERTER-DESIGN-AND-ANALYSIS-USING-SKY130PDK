@@ -205,23 +205,28 @@ Then finally, we will be designing the testbench where we place the power suppli
 
 Here the Vdd is provided with the 1.8V which is the Max voltage supported by the NMOS and PMOS devices then the Vin is provided with 0V which is then varied in the Code_shown window.
 
-`.dc vin 0 2 1m`
+> Code_shown window
+".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.dc vin 0 2 1m\
+.save all \
+.end"
 
->syntax -> dc srcnam vstart vstop vincr [ src2 start2 stop2 incr2 ]
+>syntax -> dc srcnam vstart vstop vincr
 
 ![3 INEVRTER TESTBENCH](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/7dfe04c4-bd7f-4ad5-adfd-458af3015d51)
 
-##3.2.1 DC Analysis of VTC curve
+### 3.2.1 DC Analysis of VTC curve
 
 A voltage transfer characteristics paints a plot that shows the behavior of a device when it's input is changed(full swing). It shows what happens to the output as input changes. In our case, for an inverter we can see a plot that is like a square wave(non ideal), that changes it's nature around 0.9(ideally) volts of input which is known as the *Threshold voltage*. So one can say that there are like 3 regions in the VTC curve, the portion where output is high, the place of transistion and the one where the output goes low. But actually there are five regions of operation and they are based on the working of inverter constituents, that is the NMOS and the PMOS transistors with respect to the change in the input potential. which can be observed from the below picture.
 
 ![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ddebedbc-a497-4c05-b775-0547ebaa12b5)
 
-DC analysis would be used to plot a Voltage Transfer Characteristics (VTC) curve for the circuit. It will sweep the value of Vin from high to low to determine the working of circuit with respect to different voltage levels in the input. The following plot is observed when simulated :
+**DC analysis would be used to plot a Voltage Transfer Characteristics (VTC) curve for the circuit**. It will sweep the value of Vin from high to low to determine the working of circuit with respect to different voltage levels in the input. The following plot is observed when simulated :
 
 ![4 INVERETR OUTPUT WHEN PMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ff468dac-9840-453a-b4f3-c420a089534d)
+
 The above plot is observed when the widths of both PMOS and NMOS are given as 1.  
-Here both the Input and output are crossing at a point which is known as *Threshold voltage* where the output changes it's nature w.r.to input signal. WHich can be measured using the following code in the NGSPICE:
+Here both the Input and output are crossing at a point which is known as *Threshold voltage* where the output changes it's nature w.r.to input signal. Which can be measured using the following code in the NGSPICE:
 
 `meas dc vm when vin=vout`
 
@@ -229,10 +234,12 @@ the observed threshold is `vm=0.8380288` which is near to the ideal value(0.9) b
 
 
 ![5 INVERETR OUTPUT WHEN PMOS WIDTH=2](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/740e750b-a9a8-41bb-a2b4-35cef020620c)
+
 The above plot is observed when the widths of PMOS=2 and NMOS=1.
 the observed threshold is `vm=0.8698293` which is very near to the ideal value(0.9).
 
 ![6 INVERETR OUTPUT WHEN PMOS WIDTH=3](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ed87ad29-5431-4ab8-b86e-074a46b06bba)
+
 The above plot is observed when the widths of PMOS=3 and NMOS=1.
 the observed threshold is `vm=0.8930940` which is equal to the ideal value(0.9).
 
