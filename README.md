@@ -440,3 +440,4 @@ from the above design `Rise time= 1.2566^-9`
 from the above design `Rise time= 6.33198^-10`\
 
 **So, we can conclude that by reducing the Load capacitance the delay will be reducing bu a great extent.**
+---
