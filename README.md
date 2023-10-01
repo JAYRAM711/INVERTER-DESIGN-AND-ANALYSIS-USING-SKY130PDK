@@ -148,8 +148,6 @@ using `plot -vds#branch`
 > ![PMOS_IDS_VDS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/f155b6bb-fc64-471e-99d4-0019af639988)
 
 
-
-
 - Ids vs Vgs
 > Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
@@ -157,6 +155,37 @@ using `plot -vds#branch`
 .save all \
 .end"
 > ![PMOS_IDS_VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/81bfec6e-a5b1-4d9e-a622-d5e64f197d0b)
-
-
 --- 
+
+## 3. CMOS Inverter Design and Analysis
+
+Before I begin with the CMOS inverter, I believe it is important to define an inverter. An *inverter* is a device that inverts. It is commonly explained in electronics as something that executes NOT logic, that is, something that complements the input. As a result, a HIGH(1.8V) becomes a LOW(0V) and vice versa. The output should ideally follow the input, with no delay or circuit propagation difficulties. In fact, though, an inverter can be a true piece of work. It can have several isseus, such as how rapidly it can react to changes in the input, how much load it can withstand before its output breaks, and many more, such as noise, delay, and so on.
+
+All these parameters are what will always plague any analog design or design with transistor in general. Hence, with inverter many like to explore them all. So it justifies why Inverter is referred to as **Hello World! of transistor level design**
+
+I first start with a schematic diagram, and then found the output for that particular design and then Designed a symbol using the schematic diagram and then designed a testbench circuit that is capable of evaluating all the parameters(like noise, delay and power), by measuring them, experimentin with them and reaching a conclusive value and finding the reasons for there issues in the above parameters.
+
+#### 3.1.1 Inverter Schematic diagram
+
+![1 INVERTER SCHEMATIC](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a5eb939d-4248-4df4-ac1c-d2438751776d)
+
+#### 3.1.2 Inverter output
+![3 INVERTER SCHEMATIC OUTPUT](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b849c3ee-752e-4ec0-bb1d-40caf98cbdff)
+
+![4 SPIKES DUE TO PARASATIC CAPACITANCE BW INP   OUT](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/650f33ad-07d1-48f3-8e70-003192a1a95e)
+
+
+#### 3.1.3 Inverter symbol
+![2 SYMBOL](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/9db11317-19c5-450c-953f-c56a7acfe892)
+
+#### 3.1.3 Inverter Testbench 
+![3 INEVRTER TESTBENCH](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/7dfe04c4-bd7f-4ad5-adfd-458af3015d51)
+
+
+## 4.VTC curve
+
+![4 INVERETR OUTPUT WHEN PMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ff468dac-9840-453a-b4f3-c420a089534d)
+
+![5 INVERETR OUTPUT WHEN PMOS WIDTH=2](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/740e750b-a9a8-41bb-a2b4-35cef020620c)
+
+![6 INVERETR OUTPUT WHEN PMOS WIDTH=3](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ed87ad29-5431-4ab8-b86e-074a46b06bba)
