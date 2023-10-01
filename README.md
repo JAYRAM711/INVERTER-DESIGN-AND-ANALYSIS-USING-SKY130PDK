@@ -303,7 +303,7 @@ So for our calculated values, the device would have, NML = 0.74V and NML = 0.82V
 
 The propagation delay of a logic gate e.g. inverter is the difference in time (calculated at 50% of input-output transition), when output switches, after application of input.
 
-The propagation delay high to low (tpHL) is the delay when output switches from high-to-low, after input switches from low-to-high. The delay is usually calculated at 50% point of input-output switching, as shown in above figure.
+The propagation delay high to low (tpHL) is the delay when output switches from high-to-low, after input switches from low-to-high. Similarly for the tpLH. The delay is usually calculated at 50% point of input-output switching, as shown in above figure.
 
 **Transient analysis would be used perform dealy analysis as delay is a form of time and transient analysis performs Time dependancy analysis**
 >code_shown window\
@@ -315,8 +315,7 @@ The propagation delay high to low (tpHL) is the delay when output switches from 
 
 ![1 PROPAGATION DELAY WHEN RT=0 3n   fT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/44d2c9a3-7956-4116-a2c5-f46da43b4f0d)
 
-
-- CASE-1
+CASE-1
 in here Vin is provided with Pulsed input:\
 `pulse (0 1.8 0 .3n .3n 3n 6.6n 3)`
 > syntax -> PULSE ( V1 V2 TD TR TF PW PER NP )
@@ -332,12 +331,12 @@ vout50= 6.7748n`
 
 then the 
 ```
-Propagation Delay, tpHL= vout50 - vin50= 0.0248ns
+Propagation Delay= vout50 - vin50= 0.0248ns
 ```
 ![2 PROPAGATION DELAY WHEN RT=0 3n   FT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b446b486-22df-45d8-a558-89f56b6f6b27)
 
 
-- CASE-2 -> Analysing that Propagation delay gets reduced with reduction in input
+CASE-2 -> Analysing that Propagation delay gets reduced with reduction in input
 in here Vin is provided with Pulsed input:\
 `pulse (0 1.8 0 .1n .1n 3n 6.2n 3)`
 
@@ -347,7 +346,7 @@ vout50= 6.26835n`
 
 then the 
 ```
-Propagation Delay, tphl = vout50 - vin50= 0.01835ns
+Propagation Delay= vout50 - vin50= 0.01835ns
 ```
 ![3 PROPAGATION DELAY WHEN RT=0 1n   FT=0 1n, so PD depends on input ](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a4f57c96-f80a-4503-9156-a87cc60e5ab0)
 
