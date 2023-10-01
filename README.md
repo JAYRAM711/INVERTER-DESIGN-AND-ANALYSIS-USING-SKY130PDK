@@ -265,7 +265,7 @@ by using this above code we get the following waveform:
 The overall noise margin can be simulated using 
 ```
 let gain =  (abs(deriv(vout))) >= 1) * 1.8;
-plot gain
+plot gain vout
 ```
 
 Now our NMOS has S = 1/0.15 and PMOS has S = 2/0.15. Below is it's simulation result using the same testbench.
