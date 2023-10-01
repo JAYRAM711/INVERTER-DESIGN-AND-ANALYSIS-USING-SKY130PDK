@@ -140,7 +140,7 @@ using `plot -vds#branch`
 #### 2.2.2 PMOS Characteristics
 using `plot -vds#branch`
 - Ids vs Vds
-> Code_shown window
+> Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .dc Vgs 0 1.8 .1m Vds 0 2 .3\
 .save all \
@@ -149,7 +149,7 @@ using `plot -vds#branch`
 
 
 - Ids vs Vgs
-> Code_shown window
+> Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .dc Vds 0 1.8 .1m Vgs 0 2 .3\
 .save all \
@@ -178,7 +178,7 @@ Also from now on, (W/L) would be mentioned as S or Aspect Ratio Simply will be f
 Here you can observe the plotted input and output waveforms. To plot this **transient analysis** has been employed as it performs Time dependent DC analysis.As per the definition we can able to observe that the *output is an inverted version of the input signal.*
 
 To perform transient analysis the following code will be used
-> Code_shown window
+> Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .tran 0.1n 100n\
 .save all \
@@ -205,7 +205,7 @@ Then finally, we will be designing the testbench where we place the power suppli
 
 Here the Vdd is provided with the 1.8V which is the Max voltage supported by the NMOS and PMOS devices then the Vin is provided with 0V which is then varied in the Code_shown window.
 
-> Code_shown window
+> Code_shown window\
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .dc vin 0 2 1m\
 .save all \
