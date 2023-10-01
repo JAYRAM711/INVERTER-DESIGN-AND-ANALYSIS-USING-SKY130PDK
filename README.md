@@ -220,7 +220,7 @@ Here the Vdd is provided with the 1.8V which is the Max voltage supported by the
 
 A voltage transfer characteristics paints a plot that shows the behavior of a device when it's input is changed(full swing). It shows what happens to the output as input changes. In our case, for an inverter we can see a plot that is like a square wave(non ideal), that changes it's nature around 0.9(ideally) volts of input which is known as the ***Threshold voltage(Vm)***. Deviating so much from this threshold voltage might cause Noise margin issue. One can say that there are like 3 regions in the VTC curve, the portion where output is high, the place of transistion and the one where the output goes low. But actually there are five regions of operation and they are based on the working of inverter constituents, that is the NMOS and the PMOS transistors with respect to the change in the input potential. which can be observed from the below picture.
 
-![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ddebedbc-a497-4c05-b775-0547ebaa12b5)
+![VTC curve](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ddebedbc-a497-4c05-b775-0547ebaa12b5)
 
 **DC analysis would be used to plot a Voltage Transfer Characteristics (VTC) curve for the circuit**. It will sweep the value of Vin from high to low to determine the working of circuit with respect to different voltage levels in the input. The following plot is observed when simulated :
 
@@ -231,18 +231,65 @@ Here both the Input and output are crossing at a point where the output changes 
 
 `meas dc vm when vin=vout`
 
-the above observed Threshold value is `vm=0.8380288`\
+the above observed Threshold value is `vm=0.838`\
 which is near to the ideal value(0.9) but it can be improved by increasing the sizes of the PMOS and NMOS devices.
 
 
 ![INVERETR OUTPUT WHEN PMOS WIDTH=2 & NMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/740e750b-a9a8-41bb-a2b4-35cef020620c)
 
 The above plot is observed when the widths of PMOS=2 and NMOS=1.\
-the observed Threshold value is `vm=0.8698293` which is very near to the ideal value(0.9).
+the observed Threshold value is `vm=0.869` which is very near to the ideal value(0.9).
 
 ![INVERETR OUTPUT WHEN PMOS WIDTH=3 & NMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ed87ad29-5431-4ab8-b86e-074a46b06bba)
 
 The above plot is observed when the widths of PMOS=3 and NMOS=1.\
-the observed `vm=0.8930940` which is equal to the ideal value(0.9).
+the observed `vm=0.893` which is equal to the ideal value(0.9).
 
 **So, from the above observations we can say that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
+
+
+## Noise Margin Analysis
+
+Noise margin is the amount of noise that a CMOS circuit could withstand without compromising the operation of circuit. Noise margin does makes sure that any signal which is logic ‘1’ with finite noise added to it, is still recognized as logic ‘1’ and not logic ‘0’. For example a noise signal maybe 0.5 is added to the logic ‘0’ giving a input 0.5 < 0.9 so the Not gate(inverter) should consider it as logic ‘0’ and should be providing a logic ‘1’ at the output.
+
+So, it is neccessary to find the gain of the output signal at 3 regions.\
+As we already know the gain formula = dVout/dVin.
+
+ This can be measured using the following code in the NGSPICE:
+
+`deriv(vout)` 
+by using this above code we get the following waveform:
+
+![gain of vout](file:///home/jay711/Desktop/Screenshots/DAY-4/1%20deriv%20vout.png)
+
+The overall noise margin can be simulated using 
+```
+let gain =  (abs(deriv(vout))) >= 1) * 1.8;
+plot gain
+```
+
+![overall gain](file:///home/jay711/Desktop/Screenshots/DAY-4/2%20plot%20gain.png)
+
+Now our NMOS has S = 1/0.15 and PMOS has S = 2/0.15. Below is it's simulation result using the same testbench.
+
+![Noise margin](file:///home/jay711/Desktop/Screenshots/DAY-4/3%20comparision.png)
+
+The exact values of noise margin can be found by finding this 2 values "VIL & VIH"
+- VIH - Maximum input voltage that can be interpreted as logic '0'.
+- VIL - Minimum input voltage that can be interpreted as logic '1'.
+- VOH - Maximum output voltage when it is logic '1'.
+- VOL - Minimun output voltage when it is logic '0'.
+
+- To find VIL:
+`meas VIL dc find vin when gain=1 cross=1` 
+
+which is given as `VIL= 0.743`.
+
+- To find VIH:
+`meas VIH dc find vin when gain=1 cross=last` 
+
+which is given as `VIH= 0.98`.
+
+![margin parameters](file:///home/jay711/Desktop/Screenshots/DAY-4/4%20noise%20margin%20calculation.png)
+
+
