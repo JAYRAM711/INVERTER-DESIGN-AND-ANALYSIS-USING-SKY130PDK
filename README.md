@@ -68,7 +68,6 @@ step 6: run ngspice,yosys,netgen with simply typeing there name and enter
 step 7: detail tutorial are available in tool's official site.
 
 ***For a step-by-step procedure explanation for the installations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)***
-
 ---
 
 ## 2. Analysis of MOSFET Characteristics
@@ -156,7 +155,7 @@ using `plot -vds#branch`
 .save all \
 .end"
 ![PMOS_IDS_VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/81bfec6e-a5b1-4d9e-a622-d5e64f197d0b)
---- 
+> ---
 
 ## 3. CMOS Inverter Design and Analysis
 
@@ -215,6 +214,7 @@ Here the Vdd is provided with the 1.8V which is the Max voltage supported by the
 >syntax -> dc srcnam vstart vstop vincr
 
 ![INEVRTER TESTBENCH](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/7dfe04c4-bd7f-4ad5-adfd-458af3015d51)
+--- 
 
 ## 3.2 DC Analysis of VTC curve
 
@@ -246,9 +246,9 @@ The above plot is observed when the widths of PMOS=3 and NMOS=1.\
 the observed `vm=0.893` which is equal to the ideal value(0.9).
 
 **So, from the above observations we can conclude that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
+---
 
-
-## Noise Margin Analysis
+## 3.3 Noise Margin Analysis
 Noise margins are defined as the range of values for which the device can work noise free or with high resistance to noise. Noise margin does makes sure that any signal which is logic ‘1’ with finite noise added to it, is still recognized as logic ‘1’ and not logic ‘0’. For example a noise signal maybe 0.5 is added to the logic ‘0’ giving a input 0.5 < 0.9 so the Not gate(inverter) should consider it as logic ‘0’ and should be providing a logic ‘1’ at the output.
 
 So, it is neccessary to find the gain of the output signal at 3 regions.\
@@ -294,7 +294,7 @@ NML(Noise Margin for Low) - VIL - VOL = (0.74 - 0) = 0.74V
 NMH(Noise Margin for HIGH) - VOH - VIH = (1.8 - 0.98) = 0.82V
 
 So for our calculated values, the device would have, NML = 0.74V and NML = 0.82V.
-
+---
 ## 3.4 Delay Analysis
 
 ### 3.4.1 Propagation delay
@@ -313,7 +313,7 @@ The propagation delay high to low (tpHL) is the delay when output switches from 
 .end"
 
 
-![1 PROPAGATION DELAY WHEN RT=0 3n   fT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/44d2c9a3-7956-4116-a2c5-f46da43b4f0d)
+![PROPAGATION DELAY WHEN RT=0 3n   fT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/44d2c9a3-7956-4116-a2c5-f46da43b4f0d)
 
 CASE-1\
 in here Vin is provided with Pulsed input:\
@@ -333,7 +333,7 @@ then the
 ```
 Propagation Delay= vout50 - vin50= 0.0248ns
 ```
-![2 PROPAGATION DELAY WHEN RT=0 3n   FT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b446b486-22df-45d8-a558-89f56b6f6b27)
+![PROPAGATION DELAY WHEN RT=0 3n   FT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b446b486-22df-45d8-a558-89f56b6f6b27)
 
 
 CASE-2 -> Analysing that Propagation delay gets reduced with reduction in input\
@@ -348,9 +348,33 @@ then the
 ```
 Propagation Delay= vout50 - vin50= 0.01835ns
 ```
-![3 PROPAGATION DELAY WHEN RT=0 1n   FT=0 1n, so PD depends on input ](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a4f57c96-f80a-4503-9156-a87cc60e5ab0)
+![PROPAGATION DELAY WHEN RT=0 1n   FT=0 1n, so PD depends on input ](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a4f57c96-f80a-4503-9156-a87cc60e5ab0)
 
 
-**So, from the above observations we can conclude that the Propagation delay reduces with the reduction in input signal.**
+**So, from the above observations indicates that the Propagation delay reduces with the reduction in input signal from which we can conclude that Propagation delay depends on the input signal.**
+
+### 3.4.2 Rise time & Fall time
+
+Rise time (tr) is the time, during transition, when output switches from 10% to 90% of the maximum value. Fall time (tf) is the time, during transition, when output switches from 90% to 10% of the maximum value. Many designs could also prefer 30% to 70% for rise time and 70% to 30% for fall time. It could vary upto different designs.
+
+The Rise time calculated from the following code= 3.477e^-11\
+
+```
+meas tran tout10 when vout=.18 RISE=1
+
+meas tran tout90 when vout=1.6 RISE=1
+
+print tout90 - tout10
+```
 
 
+The Fall time calculated from the following code= 3.142e^-11\
+
+```
+meas tran tout10 when vout=.18 Fall=2
+
+meas tran tout90 when vout=1.6 Fall=2
+
+print tout90 - tout10
+```
+---
