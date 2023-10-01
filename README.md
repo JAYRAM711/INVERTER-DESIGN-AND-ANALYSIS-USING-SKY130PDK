@@ -366,6 +366,7 @@ meas tran tout90 when vout=1.6 RISE=1
 
 print tout90 - tout10
 ```
+![RISE TIME](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/4768c553-2548-4557-9a4e-c485feedfe9f)
 
 
 The Fall time calculated from the following code= 3.142e^-11\
@@ -377,4 +378,6 @@ meas tran tout90 when vout=1.6 Fall=2
 
 print tout90 - tout10
 ```
+![FALL TIME](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/92e64c8d-c8ac-4feb-8c7c-23768e0bf52f)
+
 ---
