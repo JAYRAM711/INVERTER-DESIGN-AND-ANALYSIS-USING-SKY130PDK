@@ -68,6 +68,7 @@ step 6: run ngspice,yosys,netgen with simply typeing there name and enter
 step 7: detail tutorial are available in tool's official site.
 
 ***For a step-by-step procedure explanation for the installations follow this [video](https://www.youtube.com/watch?v=VCuyO7Chvc8&list=PL0E9jhuDlj9r-XIIgx5PPJpogx7ThS5CB&index=1)***
+
 ---
 
 ## 2. Analysis of MOSFET Characteristics
@@ -155,7 +156,8 @@ using `plot -vds#branch`
 .save all \
 .end"
 ![PMOS_IDS_VGS](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/81bfec6e-a5b1-4d9e-a622-d5e64f197d0b)
-> ---
+
+---
 
 ## 3. CMOS Inverter Design and Analysis
 
@@ -214,6 +216,7 @@ Here the Vdd is provided with the 1.8V which is the Max voltage supported by the
 >syntax -> dc srcnam vstart vstop vincr
 
 ![INEVRTER TESTBENCH](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/7dfe04c4-bd7f-4ad5-adfd-458af3015d51)
+
 --- 
 
 ## 3.2 DC Analysis of VTC curve
@@ -246,6 +249,7 @@ The above plot is observed when the widths of PMOS=3 and NMOS=1.\
 the observed `vm=0.893` which is equal to the ideal value(0.9).
 
 **So, from the above observations we can conclude that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
+
 ---
 
 ## 3.3 Noise Margin Analysis
@@ -293,8 +297,10 @@ This range is also referred to as Noise Immunity. There are two such values of N
 NML(Noise Margin for Low) - VIL - VOL = (0.74 - 0) = 0.74V
 NMH(Noise Margin for HIGH) - VOH - VIH = (1.8 - 0.98) = 0.82V
 
-So for our calculated values, the device would have, NML = 0.74V and NML = 0.82V.
+**So for our calculated values, the device would have, NML = 0.74V and NML = 0.82V.**
+
 ---
+
 ## 3.4 Delay Analysis
 
 ### 3.4.1 Propagation delay
@@ -440,4 +446,5 @@ from the above design `Rise time= 1.2566^-9`
 from the above design `Rise time= 6.33198^-10`\
 
 **So, we can conclude that by reducing the Load capacitance the delay will be reducing bu a great extent.**
+
 ---
