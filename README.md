@@ -140,7 +140,7 @@ using `plot -vds#branch`
 #### 2.2.2 PMOS Characteristics
 using `plot -vds#branch`
 - Ids vs Vds
-> Code_shown window\
+> Code_shown window
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .dc Vgs 0 1.8 .1m Vds 0 2 .3\
 .save all \
@@ -149,7 +149,7 @@ using `plot -vds#branch`
 
 
 - Ids vs Vgs
-> Code_shown window\
+> Code_shown window
 ".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
 .dc Vds 0 1.8 .1m Vgs 0 2 .3\
 .save all \
@@ -167,25 +167,73 @@ I first start with a schematic diagram, and then found the output for that parti
 
 #### 3.1.1 Inverter Schematic diagram
 
+So I designed a Schematic of the Inverter, using a PMOS of (W/L) Aspect ratio =(1/0.15) and NMOS of (W/L) Aspect ratio =(1/0.15) where the gates are interconnected and given to Vin(input voltage) and the sources are also interconnected and given to Vout(output voltage) then finally the drains are connected to vdd and gnd respectively.
+
+Also from now on, (W/L) would be mentioned as S or Aspect Ratio Simply will be furture changed for the future analysis(Transient and DC).
+
 ![1 INVERTER SCHEMATIC](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a5eb939d-4248-4df4-ac1c-d2438751776d)
 
 #### 3.1.2 Inverter output
+
+Here you can observe the plotted input and output waveforms. To plot this **transient analysis** has been employed as it performs Time dependent DC analysis.As per the definition we can able to observe that the *output is an inverted version of the input signal.*
+
+To perform transient analysis the following code will be used
+> Code_shown window
+".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.tran 0.1n 100n\
+.save all \
+.end"
+
+>syntax -> . tran tstep tstop
+
 ![3 INVERTER SCHEMATIC OUTPUT](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b849c3ee-752e-4ec0-bb1d-40caf98cbdff)
+
+On observing clearly, you will be able see some spikes on the output waveform. This irregularites i.e sskies are the cause of Parasatic capatitance b/w input and output.
 
 ![4 SPIKES DUE TO PARASATIC CAPACITANCE BW INP   OUT](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/650f33ad-07d1-48f3-8e70-003192a1a95e)
 
 
 #### 3.1.3 Inverter symbol
+
+Then using the schematic diagram we'll be designing a symbol for the CMOS Inverter.
+
 ![2 SYMBOL](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/9db11317-19c5-450c-953f-c56a7acfe892)
 
 #### 3.1.3 Inverter Testbench 
+
+Then finally, we will be designing the testbench where we place the power supplies. We would use the following testbecnch for future analysis.(Transient and DC)
+
+Here the Vdd is provided with the 1.8V which is the Max voltage supported by the NMOS and PMOS devices then the Vin is provided with 0V which is then varied in the Code_shown window.
+
+`.dc vin 0 2 1m`
+
+>syntax -> dc srcnam vstart vstop vincr [ src2 start2 stop2 incr2 ]
+
 ![3 INEVRTER TESTBENCH](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/7dfe04c4-bd7f-4ad5-adfd-458af3015d51)
 
+##3.2.1 DC Analysis of VTC curve
 
-## 4.VTC curve
+A voltage transfer characteristics paints a plot that shows the behavior of a device when it's input is changed(full swing). It shows what happens to the output as input changes. In our case, for an inverter we can see a plot that is like a square wave(non ideal), that changes it's nature around 0.9(ideally) volts of input which is known as the *Threshold voltage*. So one can say that there are like 3 regions in the VTC curve, the portion where output is high, the place of transistion and the one where the output goes low. But actually there are five regions of operation and they are based on the working of inverter constituents, that is the NMOS and the PMOS transistors with respect to the change in the input potential. which can be observed from the below picture.
+
+![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ddebedbc-a497-4c05-b775-0547ebaa12b5)
+
+DC analysis would be used to plot a Voltage Transfer Characteristics (VTC) curve for the circuit. It will sweep the value of Vin from high to low to determine the working of circuit with respect to different voltage levels in the input. The following plot is observed when simulated :
 
 ![4 INVERETR OUTPUT WHEN PMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ff468dac-9840-453a-b4f3-c420a089534d)
+The above plot is observed when the widths of both PMOS and NMOS are given as 1.  
+Here both the Input and output are crossing at a point which is known as *Threshold voltage* where the output changes it's nature w.r.to input signal. WHich can be measured using the following code in the NGSPICE:
+
+`meas dc vm when vin=vout`
+
+the observed threshold is `vm=0.8380288` which is near to the ideal value(0.9) but it can be improved by increasing the sizes of the PMOS and NMOS devices. 
+
 
 ![5 INVERETR OUTPUT WHEN PMOS WIDTH=2](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/740e750b-a9a8-41bb-a2b4-35cef020620c)
+The above plot is observed when the widths of PMOS=2 and NMOS=1.
+the observed threshold is `vm=0.8698293` which is very near to the ideal value(0.9).
 
 ![6 INVERETR OUTPUT WHEN PMOS WIDTH=3](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ed87ad29-5431-4ab8-b86e-074a46b06bba)
+The above plot is observed when the widths of PMOS=3 and NMOS=1.
+the observed threshold is `vm=0.8930940` which is equal to the ideal value(0.9).
+
+**So, from the above observations we can say that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
