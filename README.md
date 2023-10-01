@@ -166,7 +166,7 @@ All these parameters are what will always plague any analog design or design wit
 
 I first start with a schematic diagram, and then found the output for that particular design and then Designed a symbol using the schematic diagram and then designed a testbench circuit that is capable of evaluating all the parameters(like noise, delay and power), by measuring them, experimentin with them and reaching a conclusive value and finding the reasons for there issues in the above parameters.
 
-#### 3.1.1 Inverter Schematic diagram
+### 3.1.1 Inverter Schematic diagram
 
 So I designed a Schematic of the Inverter, using a PMOS of (W/L) Aspect ratio =(1/0.15) and NMOS of (W/L) Aspect ratio =(1/0.15) where the gates are interconnected and given to Vin(input voltage) and the sources are also interconnected and given to Vout(output voltage) then finally the drains are connected to vdd and gnd respectively.
 
@@ -174,7 +174,7 @@ Also from now on, (W/L) would be mentioned as S or Aspect Ratio Simply will be f
 
 ![INVERTER SCHEMATIC](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a5eb939d-4248-4df4-ac1c-d2438751776d)
 
-#### 3.1.2 Inverter output
+### 3.1.2 Inverter output
 
 Here you can observe the plotted input and output waveforms. To plot this **transient analysis** has been employed as it performs Time dependent DC analysis.As per the definition we can able to observe that the *output is an inverted version of the input signal.*
 
@@ -194,13 +194,13 @@ On observing clearly, you will be able see some spikes on the output waveform. T
 ![4 SPIKES DUE TO PARASATIC CAPACITANCE](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/650f33ad-07d1-48f3-8e70-003192a1a95e)
 
 
-#### 3.1.3 Inverter symbol
+### 3.1.3 Inverter symbol
 
 Then using the schematic diagram we'll be designing a symbol for the CMOS Inverter. The main advantage of this symbol is portability so it can be added in added in any other circuit and operated easily.
 
 ![SYMBOL](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/9db11317-19c5-450c-953f-c56a7acfe892)
 
-#### 3.1.3 Inverter Testbench 
+### 3.1.4 Inverter Testbench 
 
 Then finally, we will be designing the testbench where we place the power supplies. We would use the following testbecnch for future analysis.(Transient and DC)
 
@@ -216,7 +216,7 @@ Here the Vdd is provided with the 1.8V which is the Max voltage supported by the
 
 ![INEVRTER TESTBENCH](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/7dfe04c4-bd7f-4ad5-adfd-458af3015d51)
 
-### 3.2.1 DC Analysis of VTC curve
+## 3.2 DC Analysis of VTC curve
 
 A voltage transfer characteristics paints a plot that shows the behavior of a device when it's input is changed(full swing). It shows what happens to the output as input changes. In our case, for an inverter we can see a plot that is like a square wave(non ideal), that changes it's nature around 0.9(ideally) volts of input which is known as the ***Threshold voltage(Vm)***. Deviating so much from this threshold voltage might cause Noise margin issue. One can say that there are like 3 regions in the VTC curve, the portion where output is high, the place of transistion and the one where the output goes low. But actually there are five regions of operation and they are based on the working of inverter constituents, that is the NMOS and the PMOS transistors with respect to the change in the input potential. which can be observed from the below picture.
 
