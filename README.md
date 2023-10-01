@@ -230,7 +230,7 @@ Here both the Input and output are crossing at a point which is known as *Thresh
 
 `meas dc vm when vin=vout`
 
-the observed threshold is `vm=0.8380288` which is near to the ideal value(0.9) but it can be improved by increasing the sizes of the PMOS and NMOS devices. 
+the above observed threshold is `vm=0.8380288` which is near to the ideal value(0.9) but it can be improved by increasing the sizes of the PMOS and NMOS devices.
 
 
 ![5 INVERETR OUTPUT WHEN PMOS WIDTH=2](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/740e750b-a9a8-41bb-a2b4-35cef020620c)
