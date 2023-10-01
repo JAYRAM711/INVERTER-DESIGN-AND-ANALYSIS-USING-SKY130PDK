@@ -308,12 +308,16 @@ The propagation delay high to low (tpHL) is the delay when output switches from 
 **Transient analysis would be used perform dealy analysis as delay is a form of time and transient analysis performs Time dependancy analysis**
 >code_shown window\
 >".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
-.tran 0.02 10n
+.tran 0.02 10n\
 .save all\
 .end"
 
-- CASE_1
-in here Vin is provided with Pulsed input:
+
+![1 PROPAGATION DELAY WHEN RT=0 3n   fT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/44d2c9a3-7956-4116-a2c5-f46da43b4f0d)
+
+
+- CASE-1
+in here Vin is provided with Pulsed input:\
 `pulse (0 1.8 0 .3n .3n 3n 6.6n 3)`
 > syntax -> PULSE ( V1 V2 TD TR TF PW PER NP )
 
@@ -322,23 +326,31 @@ So, after plotting the waveform the propagation delay is measured at 50% of Vin 
 meas tran vin50 when vin=.9 RISE=2
 meas tran vout50 when vout=.9 RISE=2
 ```
-for the above calculation the outputs are given by
+for the above calculation the outputs are given by\
 `vin50= 6.75n
 vout50= 6.7748n`
 
-then the Propagation Delay= vout50 - vin50
-`Propagation Delay, tphl= 0.0248ns`
+then the 
+```
+Propagation Delay, tpHL= vout50 - vin50= 0.0248ns
+```
+![2 PROPAGATION DELAY WHEN RT=0 3n   FT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b446b486-22df-45d8-a558-89f56b6f6b27)
 
-- CASE_2 -> Analysing that Propagation delay gets reduced with reduction in input
-in here Vin is provided with Pulsed input:
+
+- CASE-2 -> Analysing that Propagation delay gets reduced with reduction in input
+in here Vin is provided with Pulsed input:\
 `pulse (0 1.8 0 .1n .1n 3n 6.2n 3)`
 
-for the above calculation the outputs are given by
-`vin50= 6.25n
+for the above calculation the outputs are given by\
+`vin50= 6.25n, 
 vout50= 6.26835n`
 
-then the Propagation Delay= vout50 - vin50
-`Propagation Delay, tphl= 0.01835ns`
+then the 
+```
+Propagation Delay, tphl = vout50 - vin50= 0.01835ns
+```
+![3 PROPAGATION DELAY WHEN RT=0 1n   FT=0 1n, so PD depends on input ](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/a4f57c96-f80a-4503-9156-a87cc60e5ab0)
+
 
 **So, from the above observations we can conclude that the Propagation delay reduces with the reduction in input signal.**
 
