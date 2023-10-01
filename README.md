@@ -260,7 +260,7 @@ As we already know the gain formula = dVout/dVin.
 `deriv(vout)` 
 by using this above code we get the following waveform:
 
-![gain of vout](file:///home/jay711/Desktop/Screenshots/DAY-4/1%20deriv%20vout.png)
+![gain of vout](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ab099654-3dcc-4dcc-831f-2ca24cae4a82)
 
 The overall noise margin can be simulated using 
 ```
@@ -268,11 +268,10 @@ let gain =  (abs(deriv(vout))) >= 1) * 1.8;
 plot gain
 ```
 
-![overall gain](file:///home/jay711/Desktop/Screenshots/DAY-4/2%20plot%20gain.png)
-
 Now our NMOS has S = 1/0.15 and PMOS has S = 2/0.15. Below is it's simulation result using the same testbench.
 
-![Noise margin](file:///home/jay711/Desktop/Screenshots/DAY-4/3%20comparision.png)
+![Noise margin](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/591c6e14-7ec8-4433-9d40-dde068f6db48)
+
 
 The exact values of noise margin can be found by finding this 2 values "VIL & VIH"
 - VIH - Maximum input voltage that can be interpreted as logic '0'.
@@ -290,6 +289,6 @@ which is given as `VIL= 0.743`.
 
 which is given as `VIH= 0.98`.
 
-![margin parameters](file:///home/jay711/Desktop/Screenshots/DAY-4/4%20noise%20margin%20calculation.png)
+![margin parameters](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/bb227133-d360-4be1-be41-d4ba806efb23)
 
 
