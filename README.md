@@ -315,7 +315,7 @@ The propagation delay high to low (tpHL) is the delay when output switches from 
 
 ![1 PROPAGATION DELAY WHEN RT=0 3n   fT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/44d2c9a3-7956-4116-a2c5-f46da43b4f0d)
 
-CASE-1
+CASE-1\
 in here Vin is provided with Pulsed input:\
 `pulse (0 1.8 0 .3n .3n 3n 6.6n 3)`
 > syntax -> PULSE ( V1 V2 TD TR TF PW PER NP )
@@ -336,7 +336,7 @@ Propagation Delay= vout50 - vin50= 0.0248ns
 ![2 PROPAGATION DELAY WHEN RT=0 3n   FT=0 3n](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b446b486-22df-45d8-a558-89f56b6f6b27)
 
 
-CASE-2 -> Analysing that Propagation delay gets reduced with reduction in input
+CASE-2 -> Analysing that Propagation delay gets reduced with reduction in input\
 in here Vin is provided with Pulsed input:\
 `pulse (0 1.8 0 .1n .1n 3n 6.2n 3)`
 
