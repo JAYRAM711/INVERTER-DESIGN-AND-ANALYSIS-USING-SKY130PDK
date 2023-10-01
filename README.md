@@ -227,21 +227,22 @@ A voltage transfer characteristics paints a plot that shows the behavior of a de
 ![INVERETR OUTPUT WHEN PMOS & NMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ff468dac-9840-453a-b4f3-c420a089534d)
 
 The above plot is observed when the widths of both PMOS and NMOS are given as 1.  
-Here both the Input and output are crossing at a point where the output changes it's nature w.r.to input signal which is represented using **"Vm"**. Which can be measured using the following code in the NGSPICE:
+Here both the Input and output are crossing at a point where the output changes it's nature w.r.to input signal which is known as ***"Threshold voltage"*** represented using ***"Vm"***. Which can be measured using the following code in the NGSPICE:
 
 `meas dc vm when vin=vout`
 
-the above observed `vm=0.8380288` which is near to the ideal value(0.9) but it can be improved by increasing the sizes of the PMOS and NMOS devices.
+the above observed Threshold value is `vm=0.8380288`\
+which is near to the ideal value(0.9) but it can be improved by increasing the sizes of the PMOS and NMOS devices.
 
 
 ![INVERETR OUTPUT WHEN PMOS WIDTH=2 & NMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/740e750b-a9a8-41bb-a2b4-35cef020620c)
 
-The above plot is observed when the widths of PMOS=2 and NMOS=1.
-the observed `vm=0.8698293` which is very near to the ideal value(0.9).
+The above plot is observed when the widths of PMOS=2 and NMOS=1.\
+the observed Threshold value is `vm=0.8698293` which is very near to the ideal value(0.9).
 
 ![INVERETR OUTPUT WHEN PMOS WIDTH=3 & NMOS WIDTH=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ed87ad29-5431-4ab8-b86e-074a46b06bba)
 
-The above plot is observed when the widths of PMOS=3 and NMOS=1.
+The above plot is observed when the widths of PMOS=3 and NMOS=1.\
 the observed `vm=0.8930940` which is equal to the ideal value(0.9).
 
 **So, from the above observations we can say that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
