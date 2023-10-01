@@ -189,14 +189,14 @@ To perform transient analysis the following code will be used
 
 ![INVERTER OUTPUT](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/b849c3ee-752e-4ec0-bb1d-40caf98cbdff)
 
-On observing clearly, you will be able see some spikes on the output waveform. This irregularites i.e sskies are the cause of Parasatic capatitance b/w input and output.
+On observing clearly, you will be able see some spikes on the output waveform. This irregularites i.e spikes are the cause of Parasatic capatitance b/w input and output.
 
-![4 SPIKES DUE TO PARASATIC CAPACITANCE BW INP   OUT](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/650f33ad-07d1-48f3-8e70-003192a1a95e)
+![4 SPIKES DUE TO PARASATIC CAPACITANCE](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/650f33ad-07d1-48f3-8e70-003192a1a95e)
 
 
 #### 3.1.3 Inverter symbol
 
-Then using the schematic diagram we'll be designing a symbol for the CMOS Inverter.
+Then using the schematic diagram we'll be designing a symbol for the CMOS Inverter. The main advantage of this symbol is portability so it can be added in added in any other circuit and operated easily.
 
 ![SYMBOL](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/9db11317-19c5-450c-953f-c56a7acfe892)
 
