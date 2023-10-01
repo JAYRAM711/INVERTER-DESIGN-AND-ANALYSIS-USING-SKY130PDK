@@ -245,12 +245,11 @@ the observed Threshold value is `vm=0.869` which is very near to the ideal value
 The above plot is observed when the widths of PMOS=3 and NMOS=1.\
 the observed `vm=0.893` which is equal to the ideal value(0.9).
 
-**So, from the above observations we can say that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
+**So, from the above observations we can conclude that the Threshold voltage of the CMOS inverter can be varied by improving the widths of the CMOS devices.** 
 
 
 ## Noise Margin Analysis
-
-Noise margin is the amount of noise that a CMOS circuit could withstand without compromising the operation of circuit. Noise margin does makes sure that any signal which is logic ‘1’ with finite noise added to it, is still recognized as logic ‘1’ and not logic ‘0’. For example a noise signal maybe 0.5 is added to the logic ‘0’ giving a input 0.5 < 0.9 so the Not gate(inverter) should consider it as logic ‘0’ and should be providing a logic ‘1’ at the output.
+Noise margins are defined as the range of values for which the device can work noise free or with high resistance to noise. Noise margin does makes sure that any signal which is logic ‘1’ with finite noise added to it, is still recognized as logic ‘1’ and not logic ‘0’. For example a noise signal maybe 0.5 is added to the logic ‘0’ giving a input 0.5 < 0.9 so the Not gate(inverter) should consider it as logic ‘0’ and should be providing a logic ‘1’ at the output.
 
 So, it is neccessary to find the gain of the output signal at 3 regions.\
 As we already know the gain formula = dVout/dVin.
@@ -273,7 +272,6 @@ Now our NMOS has S = 1/0.15 and PMOS has S = 2/0.15. Below is it's simulation re
 ![Noise margin](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/591c6e14-7ec8-4433-9d40-dde068f6db48)
 
 
-The exact values of noise margin can be found by finding this 2 values "VIL & VIH"
 - VIH - Maximum input voltage that can be interpreted as logic '0'.
 - VIL - Minimum input voltage that can be interpreted as logic '1'.
 - VOH - Maximum output voltage when it is logic '1'.
@@ -290,5 +288,58 @@ which is given as `VIL= 0.743`.
 which is given as `VIH= 0.98`.
 
 ![margin parameters](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/bb227133-d360-4be1-be41-d4ba806efb23)
+
+This range is also referred to as Noise Immunity. There are two such values of Noise margins for a binary system:
+NML(Noise Margin for Low) - VIL - VOL = (0.74 - 0) = 0.74V
+NMH(Noise Margin for HIGH) - VOH - VIH = (1.8 - 0.98) = 0.82V
+
+So for our calculated values, the device would have, NML = 0.74V and NML = 0.82V.
+
+## 3.4 Delay Analysis
+
+### 3.4.1 Propagation delay
+
+![image](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/198ada4f-66b1-4aa4-95ba-0981682d169c)
+
+The propagation delay of a logic gate e.g. inverter is the difference in time (calculated at 50% of input-output transition), when output switches, after application of input.
+
+The propagation delay high to low (tpHL) is the delay when output switches from high-to-low, after input switches from low-to-high. The delay is usually calculated at 50% point of input-output switching, as shown in above figure.
+
+**Transient analysis would be used perform dealy analysis as delay is a form of time and transient analysis performs Time dependancy analysis**
+>code_shown window\
+>".lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt\
+.tran 0.02 10n
+.save all\
+.end"
+
+- CASE_1
+in here Vin is provided with Pulsed input:
+`pulse (0 1.8 0 .3n .3n 3n 6.6n 3)`
+> syntax -> PULSE ( V1 V2 TD TR TF PW PER NP )
+
+So, after plotting the waveform the propagation delay is measured at 50% of Vin and Vout transition.
+```
+meas tran vin50 when vin=.9 RISE=2
+meas tran vout50 when vout=.9 RISE=2
+```
+for the above calculation the outputs are given by
+`vin50= 6.75n
+vout50= 6.7748n`
+
+then the Propagation Delay= vout50 - vin50
+`Propagation Delay, tphl= 0.0248ns`
+
+- CASE_2 -> Analysing that Propagation delay gets reduced with reduction in input
+in here Vin is provided with Pulsed input:
+`pulse (0 1.8 0 .1n .1n 3n 6.2n 3)`
+
+for the above calculation the outputs are given by
+`vin50= 6.25n
+vout50= 6.26835n`
+
+then the Propagation Delay= vout50 - vin50
+`Propagation Delay, tphl= 0.01835ns`
+
+**So, from the above observations we can conclude that the Propagation delay reduces with the reduction in input signal.**
 
 
