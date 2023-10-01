@@ -357,7 +357,7 @@ Propagation Delay= vout50 - vin50= 0.01835ns
 
 Rise time (tr) is the time, during transition, when output switches from 10% to 90% of the maximum value. Fall time (tf) is the time, during transition, when output switches from 90% to 10% of the maximum value. Many designs could also prefer 30% to 70% for rise time and 70% to 30% for fall time. It could vary upto different designs.
 
-The Rise time calculated from the following code= 3.477e^-11\
+The Rise time calculated from the following code= 3.477^-11\
 
 ```
 meas tran tout10 when vout=.18 RISE=1
@@ -369,7 +369,7 @@ print tout90 - tout10
 ![RISE TIME](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/4768c553-2548-4557-9a4e-c485feedfe9f)
 
 
-The Fall time calculated from the following code= 3.142e^-11\
+The Fall time calculated from the following code= 3.142^-11\
 
 ```
 meas tran tout10 when vout=.18 Fall=2
@@ -380,4 +380,63 @@ print tout90 - tout10
 ```
 ![FALL TIME](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/92e64c8d-c8ac-4feb-8c7c-23768e0bf52f)
 
----
+
+### 3.4.3 Techniques to reduce Delay
+
+The delay which we are finding is the *Unloaded delay* which is due to the delay caused by the internal capatitance even when the load capatitance is not connected. The internal capatitance is fixed by the foundry.\
+
+This kind of unloaded delay can be reduced by 3 ways namely,\
+- Increase the power supply\
+- Increase the size of device\
+- Reduce the Load CAPACITANCE.\
+
+*For observing the difference in delay we'll take the `Rise Time=  3.477^-11` as the reference delay and compare the changes the delay to it.*
+
+#### Technique-1: Increase the power supply
+
+By increasing the power supply to the cicuit, the speed of the increases which inturn reduces the delay.\
+
+We can understand this by an example, as the source voltage is already at its max voltage i.e. 1.8V, let us reduce the voltage to 1V so the delay should be increasing(considering the reverse condition). If the delay is increased by a reduction in voltage it would mean inturn that delay will be reduced with the Increase in voltage.
+
+![Rise time when vdd=1](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/ea3bfeca-50b6-48e7-b021-a723a5774e20)
+
+So, from the above figure we can observe the increase in the Rise time i.e. from 3.477e^-11 to 6e-11 with the reduction in the voltage source from 1.8V to 1V. **So, we can conclude that with the increase in the power supply the Delay time will be reduced.**
+
+
+#### Technique-2: Increase the size
+
+Theoretically, with the increase in the size causes Resistance to reduce with inturn increases current conduction and then intutrn increases the capacitor conduction, so due to this there will be fast response and less delay.\
+
+- case-1\
+Now we'll test this thoery by increasing the Aspect ratio(W/L) of PMOS from (2/0.15) to (4/0.15) and the Aspect ratio(W/L) of NMOS from (1/0.15) to (2/0.15).\
+Here we get a `Rise delay of 3.4608^-11`
+
+![rise time when Vdd=1.8, PMOS WIDTH=4  NMOS WIDTH=2](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/9c412334-1110-4bc3-986e-9f4fbe64f616)
+
+- case-2\
+Now we'll test this thoery by increasing the Aspect ratio(W/L) of PMOS from (4/0.15) to (8/0.15) and the Aspect ratio(W/L) of NMOS from (2/0.15) to (4/0.15).\
+Here we get a `Rise delay of 3.4546^-11`
+
+![rise time when Vdd=1 8, PMOS WIDTH=8  NMOS WIDTH=4 ](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/6b89e38f-276b-4b75-9f87-e93a0a8772f5)
+
+**So, from the above figure we can observe there is reduction in Delay which is very minimal.** This is due to as it is a unloaded delay where delay is due to internal capacitance. So, when there is an increase in size of device the internal delay will also be increasing.\
+
+#### Technique-3: Reducing Load Capacitance 
+
+For better understanding we'll include the Load capacitor which will be connected externally to the inverter circuit.\
+
+![including load capacitance](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/4acc633d-976e-42a9-a9ad-a6f74b5405ce)
+
+![vout when load capatitance=1p](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/aac3806d-65b4-4fca-bf71-ee8a748a8eb6)
+
+Here we observe that, when CL=1pf the capacitor is charging and discharging rapidly so that the values won't be setteling at any point. In such case we can *increase the clock period.*
+
+![rise time when clockperiod is increased](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/8db723f6-ebdc-4c07-bf24-2622ce6c8431)
+
+from the above design `Rise time= 1.2566^-9`
+
+![when load capatitance is further reduced i e 0 5pf](https://github.com/JAYRAM711/INVERTER-DESIGN-AND-ANALYSIS-USING-SKY130PDK/assets/119591230/9f6872bc-7c42-4559-933f-fbb2912f4a7a)
+
+from the above design `Rise time= 6.33198^-10`\
+
+**So, we can conclude that by reducing the Load capacitance the delay will be reducing bu a great extent.**
